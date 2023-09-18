@@ -31,17 +31,17 @@ STEP 3: // DONE
   Start by replacing the character "0" with {count}. The 'count' slice of state is the source of truth here.
   Then, replace the word "even" with a ternary: {if count is even number, then string "even", else string "odd"}.
 
-STEP 4:
+STEP 4: // DONE
   This click handler needs to use 'setCount' to schedule the 'count' to become the current 'count' plus one.
   These state changes are not synchronous: the updated count arrives on the next run of the Counter component.
   Do NOT simply do count++. The plus plus is forbidden! We never mutate a slice of state in place. Even if you could
   reassign a const, React would not be aware anything changed. Always use the state updater, passing in a new value.
 
-STEP 5:
+STEP 5: // DONE
   This click handler needs to use 'setCount' to set the 'count' to be the current 'count' minus one.
   Do NOT do count--. That amounts to trying to mutate 'count' in place. This is the road to perdition.
 
-STEP 6:
+STEP 6: // DONE
   This click handler needs to use 'setCount' to set the 'count' to be zero again.
 */
 
