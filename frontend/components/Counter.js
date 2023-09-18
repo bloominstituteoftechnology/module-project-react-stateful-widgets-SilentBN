@@ -14,19 +14,19 @@ A naive developer might say 3 different slices:
 But a single slice of state is all that's needed here: the count!
 The other things can simply be _derived_ from the count itself.
 
-STEP 0:
+STEP 0: // DONE
   Start by studying the component below, and importing the state hook.
 
-STEP 1:
+STEP 1: // DONE
   Using the state hook, create a 'count', 'setCount' pair.
   The 'count' state should be initialized to the number zero.
 
-STEP 2:
+STEP 2: // DONE
   The 'style' object has the 'color' property hard-coded to "royalblue".
   What the value of 'color' should be instead is a ternary expression that goes like this:
   If count is even, then "royalblue", else "crimson".
 
-STEP 3:
+STEP 3: // DONE
   We need to replace some hard-coded info in the JSX with expressions, interpolated inside curly brackets.
   Start by replacing the character "0" with {count}. The 'count' slice of state is the source of truth here.
   Then, replace the word "even" with a ternary: {if count is even number, then string "even", else string "odd"}.
@@ -45,37 +45,48 @@ STEP 6:
   This click handler needs to use 'setCount' to set the 'count' to be zero again.
 */
 
-import React from 'react'; /* STEP 0 */
+import React, { useState } from "react"; /* STEP 0 */
 
 export default function Counter() {
   /* STEP 1 */
+  const [count, setCount] = useState(0);
+  const isEven = count % 2 == 0;
 
-  const increment = () => {
+  const increment = (evt) => {
     /* STEP 4 */
+    setCount(count + 1);
   };
-  const decrement = () => {
+  const decrement = (evt) => {
     /* STEP 5 */
+    setCount(count - 1);
   };
-  const reset = () => {
+  const reset = (evt) => {
     /* STEP 6 */
+    setCount(0);
   };
 
   const style = {
-    fontSize: '1.5em',
-    marginBottom: '0.3em',
-    color: 'royalblue', /* STEP 2 */
+    fontSize: "1.5em",
+    marginBottom: "0.3em",
+    color: isEven ? "royalblue" : "crimson" /* STEP 2 */,
   };
 
   return (
-    <div className='widget-counter container'>
+    <div className="widget-counter container">
       <h2>Counter</h2>
-      <div id='count' style={style}>
-        Number 0 is even {/* STEP 3 */}
+      <div id="count" style={style}>
+        Number {count} is {isEven ? "Even" : "Odd"} {/* STEP 3 */}
       </div>
       <div>
-        <button id='increment' onClick={increment}>Increment</button>
-        <button id='decrement' onClick={decrement}>Decrement</button>
-        <button id='resetCount' onClick={reset}>Reset</button>
+        <button id="increment" onClick={increment}>
+          Increment
+        </button>
+        <button id="decrement" onClick={decrement}>
+          Decrement
+        </button>
+        <button id="resetCount" onClick={reset}>
+          Reset
+        </button>
       </div>
     </div>
   );
